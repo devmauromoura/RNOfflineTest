@@ -15,6 +15,7 @@ const NotHeader = {
 
 //Import Screens
 import MainScreen from '../screens/MainScreen';
+import TODOScreen from '../screens/TODOScreen';
 
 
 export const RouteList: TRoutePlist = [
@@ -23,10 +24,10 @@ export const RouteList: TRoutePlist = [
         component: MainScreen,
         options: NotHeader
     },
-    // item: {
-    //     title: "ItemsScreen",
-    //     component: MainScreen
-    // },
+    {
+        title: "TODOScreen",
+        component: TODOScreen
+    },
     // sync: {
     //     title: "SyncScreen",
     //     component: MainScreen

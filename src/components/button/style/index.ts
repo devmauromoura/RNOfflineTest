@@ -9,6 +9,7 @@ export const Container = styled.TouchableOpacity`
     border-width: 1px;
     border-radius: 3px;
     border-color: ${colors.primary};
+    margin-bottom: 5px;
 `;
 
 export const Text = styled.Text`

@@ -3,8 +3,14 @@ import Background from '../../components/background';
 import { Container, SubTitle, TextContainer, Title } from './style';
 import Texts from '../../assets/strings';
 import Button from '../../components/button';
+import { useNavigation } from '@react-navigation/core';
 
 const MainScreen = () => {
+
+    const navigation = useNavigation();
+    const handleGoTODO = () => {
+        navigation.navigate("TODOScreen");
+    }
     return (
         <Background>
             <Container>
@@ -14,7 +20,7 @@ const MainScreen = () => {
                 </TextContainer>
                 <Button
                     title="OK"
-                    action={() => { }}
+                    action={() => handleGoTODO()}
                 />
             </Container>
         </Background>
