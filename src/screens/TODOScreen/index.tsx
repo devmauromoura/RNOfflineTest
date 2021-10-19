@@ -46,6 +46,31 @@ const TODOScreen = () => {
     }
   };
 
+  const removeItem = async (id: string) => {
+    try {
+      const realm = await getRealm('Todo');
+      realm.write(() => {
+        realm.delete(realm.objectForPrimaryKey('Todo', id));
+      });
+      getList();
+    } catch (error) {
+      console.log('error remove', error);
+    }
+  };
+
+  const updateItem = async (id: string) => {
+    try {
+      const realm = await getRealm('Todo');
+      realm.write(() => {
+        const item = realm.objectForPrimaryKey('Todo', id);
+        item.status = 'DONE';
+      });
+      getList();
+    } catch (error) {
+      console.log('error remove', error);
+    }
+  };
+
   return (
     <Background>
       <TDContainter>
@@ -54,7 +79,7 @@ const TODOScreen = () => {
           action={() => handleChangeNet()}
         />
         <Button title="Adicionar TODO (random)" action={() => createItem()} />
-        <List data={toDoList} />
+        <List data={toDoList} remove={removeItem} update={updateItem} />
       </TDContainter>
     </Background>
   );
