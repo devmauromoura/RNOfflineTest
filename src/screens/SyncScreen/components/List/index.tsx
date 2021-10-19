@@ -18,27 +18,16 @@ const List = ({data, remove, update}) => {
   }, [data]);
 
   const renderItem = ({item, index}) => (
-    <LItemContainer key={`${item._id}`} color={item.status} >
+    <LItemContainer key={`${item._id}`} color={item.status}>
       {/* <LItemID>{item.id}</LItemID> */}
       <LItemName>{item.title}</LItemName>
-      {item.status != 'DONE' ? (
-        <LIButtonContainer onPress={() => update(item._id)}>
-          <LIButtonText>DONE</LIButtonText>
-        </LIButtonContainer>
-      ) : (
-        <LIButtonContainer>
-          <LIButtonText>----</LIButtonText>
-        </LIButtonContainer>
-      )}
-      <LIButtonContainer error onPress={() => remove(item._id)}>
-        <LIButtonText>DELETE</LIButtonText>
-      </LIButtonContainer>
+      <LItemName>{item.status}</LItemName>
     </LItemContainer>
   );
 
   const renderEmpty = () => (
     <LItemContainer>
-      <LItemName>Não há dados.</LItemName>
+      <LItemName>Não há dados para sincronizar.</LItemName>
     </LItemContainer>
   );
 

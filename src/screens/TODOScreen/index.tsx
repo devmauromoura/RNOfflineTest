@@ -50,7 +50,12 @@ const TODOScreen = () => {
     try {
       const realm = await getRealm('Todo');
       realm.write(() => {
-        realm.delete(realm.objectForPrimaryKey('Todo', id));
+        if (net) {
+          realm.delete(realm.objectForPrimaryKey('Todo', id));
+        } else {
+          const item = realm.objectForPrimaryKey('Todo', id);
+          item.status = 'DELETE-SYNC';
+        }
       });
       getList();
     } catch (error) {
@@ -63,7 +68,11 @@ const TODOScreen = () => {
       const realm = await getRealm('Todo');
       realm.write(() => {
         const item = realm.objectForPrimaryKey('Todo', id);
-        item.status = 'DONE';
+        if (net) {
+          item.status = 'DONE';
+        } else {
+          item.status = 'DONE-SYNC';
+        }
       });
       getList();
     } catch (error) {
@@ -79,6 +88,10 @@ const TODOScreen = () => {
           action={() => handleChangeNet()}
         />
         <Button title="Adicionar TODO (random)" action={() => createItem()} />
+        <Button
+          title="Sincronizar"
+          action={() => navigation.navigate('SyncScreen')}
+        />
         <List data={toDoList} remove={removeItem} update={updateItem} />
       </TDContainter>
     </Background>
